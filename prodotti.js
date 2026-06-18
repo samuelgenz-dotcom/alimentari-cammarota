@@ -150,6 +150,7 @@ const prodotti = [
 {nome:"Tè StarTea Verde", prezzo:"2,40", categoria:"Colazione"},
 {nome:"Tè StarTea Limone", prezzo:"2,30", categoria:"Colazione"},
 {nome:"Tisane L'Angelica", prezzo:"2,90", categoria:"Colazione"},
+   },
    // PASTA
 {
   nome: "Pasta Divella Spaghetti",
@@ -330,3 +331,119 @@ const prodotti = [
   prezzo: "€1,80",
   categoria: "Colazione"
 }
+},
+   // SURGELATI
+{
+  nome: "Patatine Fritte Surgelate",
+  prezzo: "€2,50",
+  categoria: "Surgelati"
+},
+{
+  nome: "Piselli Surgelati",
+  prezzo: "€2,20",
+  categoria: "Surgelati"
+},
+{
+  nome: "4 Salti in Padella",
+  prezzo: "€3,90",
+  categoria: "Surgelati"
+},
+{
+  nome: "Bastoncini Findus",
+  prezzo: "€4,50",
+  categoria: "Surgelati"
+},
+
+// DETERSIVI
+{
+  nome: "Dash Lavatrice",
+  prezzo: "€6,90",
+  categoria: "Detersivi"
+},
+{
+  nome: "Ammorbidente Coccolino",
+  prezzo: "€3,50",
+  categoria: "Detersivi"
+},
+{
+  nome: "Svelto Piatti",
+  prezzo: "€1,80",
+  categoria: "Detersivi"
+},
+{
+  nome: "Mastro Lindo",
+  prezzo: "€2,90",
+  categoria: "Detersivi"
+},
+
+// IGIENE PERSONALE
+{
+  nome: "Shampoo Pantene",
+  prezzo: "€3,90",
+  categoria: "Igiene"
+},
+{
+  nome: "Bagnoschiuma Dove",
+  prezzo: "€2,90",
+  categoria: "Igiene"
+},
+{
+  nome: "Dentifricio Mentadent",
+  prezzo: "€2,50",
+  categoria: "Igiene"
+},
+{
+  nome: "Spazzolino Oral-B",
+  prezzo: "€2,20",
+  categoria: "Igiene"
+},
+
+// CASA
+{
+  nome: "Carta Igienica Regina",
+  prezzo: "€4,50",
+  categoria: "Casa"
+},
+{
+  nome: "Scottex",
+  prezzo: "€3,20",
+  categoria: "Casa"
+},
+{
+  nome: "Sacchetti Spazzatura",
+  prezzo: "€2,50",
+  categoria: "Casa"
+},
+{
+  nome: "Pellicola Alimentare",
+  prezzo: "€1,80",
+  categoria: "Casa"
+},
+
+// FRUTTA E VERDURA
+{
+  nome: "Banane",
+  prezzo: "€1,80 kg",
+  categoria: "Frutta e Verdura"
+},
+{
+  nome: "Mele Golden",
+  prezzo: "€2,00 kg",
+  categoria: "Frutta e Verdura"
+},
+{
+  nome: "Pomodori",
+  prezzo: "€2,20 kg",
+  categoria: "Frutta e Verdura"
+},
+{
+  nome: "Insalata",
+  prezzo: "€1,20",
+  categoria: "Frutta e Verdura"
+},
+{
+  nome: "Patate",
+  prezzo: "€1,50 kg",
+  categoria: "Frutta e Verdura"
+}
+
