@@ -184,24 +184,143 @@ h1 {
   margin-bottom: 10px;
 }
 
-.ordina {
-  display: block;
-  width: 100%;
-  background: #25D366;
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 12px;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
+/* ========================
+   CONTROLLI QUANTITA
+======================== */
+.quantita-controlli {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   margin-top: 10px;
-  cursor: pointer;
-  box-sizing: border-box;
 }
 
-.ordina:hover {
-  background: #1ebe5a;
+.quantita-controlli button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: #0f5d32;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.quantita-controlli span {
+  font-size: 18px;
+  font-weight: bold;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* ========================
+   CARRELLO BAR
+======================== */
+#carrello-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #0f5d32;
+  color: white;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  z-index: 1000;
+  box-shadow: 0 -3px 10px rgba(0,0,0,.2);
+}
+
+#carrello-bar button {
+  background: white;
+  color: #0f5d32;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#carrello-bar .btn-invia {
+  background: #25D366;
+  color: white;
+}
+
+/* ========================
+   POPUP CARRELLO
+======================== */
+#carrello-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 2000;
+}
+
+#carrello-contenuto {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  max-height: 75vh;
+  border-radius: 20px 20px 0 0;
+  padding: 25px;
+  overflow-y: auto;
+}
+
+#carrello-contenuto h2 {
+  margin-bottom: 15px;
+  color: #0f5d32;
+}
+
+.carrello-riga {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  gap: 10px;
+}
+
+.carrello-riga span {
+  flex: 1;
+  font-size: 15px;
+}
+
+.prezzo-riga {
+  font-weight: bold;
+  color: #d32f2f;
+  flex: 0 !important;
+  white-space: nowrap;
+}
+
+#carrello-azioni {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+#carrello-azioni button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  background: #e0e0e0;
+  color: #333;
+}
+
+#carrello-azioni .btn-invia {
+  background: #25D366;
+  color: white;
 }
 
 /* ========================
@@ -213,6 +332,7 @@ footer {
   text-align: center;
   padding: 25px;
   margin-top: 30px;
+  padding-bottom: 80px;
 }
 
 /* ========================
@@ -265,9 +385,21 @@ footer {
     font-size: 20px;
   }
 
-  .ordina {
-    font-size: 13px;
+  .quantita-controlli button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  #carrello-bar {
+    flex-direction: column;
     padding: 10px;
+    gap: 8px;
+  }
+
+  #carrello-bar button {
+    width: 100%;
+    text-align: center;
   }
 
 }
