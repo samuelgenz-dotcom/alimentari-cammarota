@@ -4,190 +4,124 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alimentari Cammarota</title>
-
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
 <header class="hero">
-
 <img src="logo.png" alt="Alimentari Cammarota" class="logo">
-
 <h1>Alimentari Cammarota</h1>
-
 <p class="slogan">
 Qualità • Tradizione • Fiducia
 </p>
-
 <div class="banner">
 🚚 Consegna gratuita a Cancellara
 </div>
 
-<a class="btn-whatsapp"
-href="https://wa.me/393273395302?text=Buongiorno%20Alimentari%20Cammarota,%20vorrei%20effettuare%20un%20ordine.">
 📱 Ordina su WhatsApp
-</a>
-
-  <a href="tel:+393273395302" class="btn-call">
 ☎️ Chiama Ora
-</a>
-
 </header>
-
 <section class="offerte">
-
 <h2>⭐ Offerte della settimana</h2>
-
 <div class="offerte-grid">
-
 <div class="offerta">
 <h3>Latte Parmalat Intero</h3>
 <p>€1,60</p>
 </div>
-
 <div class="offerta">
 <h3>Mozzarella Lioi</h3>
 <p>€2,50</p>
 </div>
-
 <div class="offerta">
 <h3>Pasta Divella</h3>
 <p>€0,80</p>
 </div>
-
 <div class="offerta">
 <h3>Coca Cola 1,5L</h3>
 <p>€2,40</p>
 </div>
+</div>
+</section>
+<section class="ricerca">
+<h2>🔎 Cerca un prodotto</h2>
+</section>
+<section class="categorie">
+<h2>📂 Categorie</h2>
+<div class="filtri">
+
+Tutti
+Latticini
+Salumi
+Formaggi
+Pasta
+Conserve
+Bibite
+Acqua
+Snack
+Colazione
+Surgelati
+Detersivi
+Igiene
+Casa
 
 </div>
-
+<p id="contatore"></p>
 </section>
-
-<section class="ricerca">
-
-<h2>🔎 Cerca un prodotto</h2>
-
-<input
-type="text"
-id="search"
-placeholder="Scrivi il nome del prodotto..."
-onkeyup="filtraProdotti()">
-
-</section>
-  <section class="categorie">
-  <h2>📂 Categorie</h2>
-
-  <div class="filtri">
-    <button onclick="filtraCategoria('Tutti')">Tutti</button>
-    <button onclick="filtraCategoria('Latticini')">Latticini</button>
-    <button onclick="filtraCategoria('Salumi')">Salumi</button>
-    <button onclick="filtraCategoria('Formaggi')">Formaggi</button>
-    <button onclick="filtraCategoria('Pasta')">Pasta</button>
-    <button onclick="filtraCategoria('Conserve')">Conserve</button>
-    <button onclick="filtraCategoria('Bibite')">Bibite</button>
-    <button onclick="filtraCategoria('Acqua')">Acqua</button>
-    <button onclick="filtraCategoria('Snack')">Snack</button>
-    <button onclick="filtraCategoria('Colazione')">Colazione</button>
-    <button onclick="filtraCategoria('Surgelati')">Surgelati</button>
-    <button onclick="filtraCategoria('Detersivi')">Detersivi</button>
-    <button onclick="filtraCategoria('Igiene')">Igiene</button>
-    <button onclick="filtraCategoria('Casa')">Casa</button>
-    <button onclick="filtraCategoria('Frutta e Verdura')">Frutta e Verdura</button>
-  </div>
-
-  <p id="contatore"></p>
-</section>
-
 <section>
-
 <h2>🛒 Catalogo Prodotti</h2>
-
 <div id="catalogo"></div>
-
 </section>
-
 <footer>
-
 <h3>📍 Alimentari Cammarota</h3>
-
 <p>Cancellara (PZ)</p>
-
 <p>📞 327 339 5302</p>
-
 <p>🕐 08:30 - 14:00 | 17:00 - 21:00</p>
-
 </footer>
-
 <script src="prodotti.js"></script>
 <script>
-
 let categoriaAttiva = "Tutti";
-
-function mostraProdotti(lista) {
-
-  const catalogo = document.getElementById("catalogo");
-
-  catalogo.innerHTML = "";
-
-  lista.forEach(prodotto => {
-
-    catalogo.innerHTML += `
-      <div class="card">
-
-        <h3>${prodotto.nome}</h3>
-
-        <p class="prezzo">${prodotto.prezzo}</p>
-
-        <p>${prodotto.categoria}</p>
-
-        <a
-          class="ordina"
-          target="_blank"
-          href="https://wa.me/393273395302?text=Buongiorno,%20vorrei%20ordinare:%20${encodeURIComponent(prodotto.nome)}">
-          📱 Ordina
-        </a>
-
-      </div>
-    `;
-  });
-
-  document.getElementById("contatore").innerText =
-    lista.length + " prodotti trovati";
+function mostraProdotti(lista){
+const catalogo =
+document.getElementById("catalogo");
+catalogo.innerHTML = "";
+lista.forEach(prodotto => {
+catalogo.innerHTML += `
+<div class="card">
+<h3>${prodotto.nome}</h3>
+<p class="prezzo">${prodotto.prezzo}</p>
+<p>${prodotto.categoria}</p>
+<a class="ordina"
+target="_blank"
+href="https://wa.me/393273395302?text=Buongiorno,%20vorrei%20ordinare:%20${encodeURIComponent(prodotto.nome)}">
+📱 Ordina
+</a>
+</div>
+`;
+});
+document.getElementById("contatore").innerHTML =
+lista.length + " prodotti trovati";
 }
-
-function filtraProdotti() {
-
-  const testo = document
-    .getElementById("search")
-    .value
-    .toLowerCase();
-
-  let filtrati = prodotti.filter(p => {
-
-    const matchNome =
-      p.nome.toLowerCase().includes(testo);
-
-    const matchCategoria =
-      categoriaAttiva === "Tutti" ||
-      p.categoria === categoriaAttiva;
-
-    return matchNome && matchCategoria;
-  });
-
-  mostraProdotti(filtrati);
+function filtraProdotti(){
+const testo =
+document.getElementById("search")
+.value
+.toLowerCase();
+const filtrati = prodotti.filter(p => {
+const nome =
+p.nome.toLowerCase();
+const matchNome =
+nome.includes(testo);
+const matchCategoria =
+categoriaAttiva === "Tutti" ||
+p.categoria === categoriaAttiva;
+return matchNome && matchCategoria;
+});
+mostraProdotti(filtrati);
 }
-
-function filtraCategoria(cat) {
-
-  categoriaAttiva = cat;
-
-  filtraProdotti();
+function filtraCategoria(cat){
+categoriaAttiva = cat;
+filtraProdotti();
 }
-
 mostraProdotti(prodotti);
-
 </script>
 </body>
-</html>
+</html
