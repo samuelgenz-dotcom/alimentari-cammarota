@@ -109,6 +109,67 @@
 
   mostraProdotti(prodotti);
 </script>
+      /* MOBILE - iPhone */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .slogan {
+    font-size: 15px;
+  }
+
+  .filtri {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .filtri button {
+    font-size: 13px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: #e0e0e0;
+    border: none;
+    cursor: pointer;
+  }
+
+  .filtri button.attivo {
+    background: #0f5d32;
+    color: white;
+  }
+
+  #catalogo {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .card {
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .prezzo {
+    font-size: 20px;
+  }
+
+  .ordina {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .btn-whatsapp, .btn-call {
+    display: block;
+    margin: 8px auto;
+    max-width: 280px;
+    text-align: center;
+  }
+
+}
+
 
 </body>
 </html>
