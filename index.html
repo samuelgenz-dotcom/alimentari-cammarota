@@ -1,10 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alimentari Cammarota</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+<header class="hero">
+
+<img src="logo.png.png" alt="Alimentari Cammarota" class="logo">
+
 <h1>Alimentari Cammarota</h1>
-<p>Sito in costruzione 🚚</p>
+
+<p class="slogan">
+Qualità • Tradizione • Fiducia
+</p>
+
+<div class="banner">
+🚚 Consegna gratuita a Cancellara
+</div>
+
+<a class="btn-whatsapp"
+href="https://wa.me/393273395302?text=Buongiorno%20Alimentari%20Cammarota,%20vorrei%20effettuare%20un%20ordine.">
+📱 Ordina su WhatsApp
+</a>
+
+</header>
+
+<section class="offerte">
+
+<h2>⭐ Offerte della settimana</h2>
+
+<div class="offerte-grid">
+
+<div class="offerta">
+<h3>Latte Parmalat Intero</h3>
+<p>€1,60</p>
+</div>
+
+<div class="offerta">
+<h3>Mozzarella Lioi</h3>
+<p>€2,50</p>
+</div>
+
+<div class="offerta">
+<h3>Pasta Divella</h3>
+<p>€0,80</p>
+</div>
+
+<div class="offerta">
+<h3>Coca Cola 1,5L</h3>
+<p>€2,40</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="ricerca">
+
+<h2>🔎 Cerca un prodotto</h2>
+
+<input
+type="text"
+id="search"
+placeholder="Scrivi il nome del prodotto..."
+onkeyup="filtraProdotti()">
+
+</section>
+
+<section>
+
+<h2>🛒 Catalogo Prodotti</h2>
+
+<div id="catalogo"></div>
+
+</section>
+
+<footer>
+
+<h3>📍 Alimentari Cammarota</h3>
+
+<p>Cancellara (PZ)</p>
+
+<p>📞 327 339 5302</p>
+
+<p>🕐 08:30 - 14:00 | 17:00 - 21:00</p>
+
+</footer>
+
+<script src="prodotti.js"></script>
+
 </body>
 </html>
