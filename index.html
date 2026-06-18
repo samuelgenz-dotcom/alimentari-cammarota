@@ -121,6 +121,73 @@ onkeyup="filtraProdotti()">
 </footer>
 
 <script src="prodotti.js"></script>
+<script>
 
+let categoriaAttiva = "Tutti";
+
+function mostraProdotti(lista) {
+
+  const catalogo = document.getElementById("catalogo");
+
+  catalogo.innerHTML = "";
+
+  lista.forEach(prodotto => {
+
+    catalogo.innerHTML += `
+      <div class="card">
+
+        <h3>${prodotto.nome}</h3>
+
+        <p class="prezzo">${prodotto.prezzo}</p>
+
+        <p>${prodotto.categoria}</p>
+
+        <a
+          class="ordina"
+          target="_blank"
+          href="https://wa.me/393273395302?text=Buongiorno,%20vorrei%20ordinare:%20${encodeURIComponent(prodotto.nome)}">
+          📱 Ordina
+        </a>
+
+      </div>
+    `;
+  });
+
+  document.getElementById("contatore").innerText =
+    lista.length + " prodotti trovati";
+}
+
+function filtraProdotti() {
+
+  const testo = document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+  let filtrati = prodotti.filter(p => {
+
+    const matchNome =
+      p.nome.toLowerCase().includes(testo);
+
+    const matchCategoria =
+      categoriaAttiva === "Tutti" ||
+      p.categoria === categoriaAttiva;
+
+    return matchNome && matchCategoria;
+  });
+
+  mostraProdotti(filtrati);
+}
+
+function filtraCategoria(cat) {
+
+  categoriaAttiva = cat;
+
+  filtraProdotti();
+}
+
+mostraProdotti(prodotti);
+
+</script>
 </body>
 </html>
