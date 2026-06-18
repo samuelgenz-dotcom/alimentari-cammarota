@@ -419,4 +419,5 @@ const prodotti = [
   prezzo: "€1,80",
   categoria: "Casa"
 }
+];
 
