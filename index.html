@@ -122,6 +122,55 @@ categoriaAttiva = cat;
 filtraProdotti();
 }
 mostraProdotti(prodotti);
+<script src="prodotti.js"></script>
+
+<script>
+
+function mostraProdotti(lista) {
+
+  const catalogo = document.getElementById("catalogo");
+
+  catalogo.innerHTML = "";
+
+  lista.forEach(prodotto => {
+
+    catalogo.innerHTML += `
+      <div class="card">
+        <h3>${prodotto.nome}</h3>
+        <p class="prezzo">${prodotto.prezzo}</p>
+        <p>${prodotto.categoria}</p>
+
+        <a class="ordina"
+           href="https://wa.me/393273395302?text=Vorrei%20ordinare:%20${encodeURIComponent(prodotto.nome)}"
+           target="_blank">
+           📱 Ordina
+        </a>
+
+      </div>
+    `;
+
+  });
+
+}
+
+function filtraProdotti() {
+
+  const ricerca = document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+  const filtrati = prodotti.filter(p =>
+    p.nome.toLowerCase().includes(ricerca)
+  );
+
+  mostraProdotti(filtrati);
+
+}
+
+mostraProdotti(prodotti);
+
 </script>
+
 </body>
-</html
+</html>
