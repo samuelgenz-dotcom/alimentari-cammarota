@@ -1,202 +1,154 @@
 const prodotti = [
 
-{
-nome:"Latte Parmalat Intero 1000ml",
-prezzo:"€1,60"
-},
+/* =========================
+   LATTE E LATTICINI
+========================= */
 
-{
-nome:"Latte Parmalat Scremato 1000ml",
-prezzo:"€1,40"
-},
+{nome:"Latte Parmalat Intero 1000ml", prezzo:"1,60", categoria:"Latticini"},
+{nome:"Latte Parmalat Scremato 1000ml", prezzo:"1,40", categoria:"Latticini"},
+{nome:"Latte Zymil Verde 500ml", prezzo:"1,55", categoria:"Latticini"},
+{nome:"Latte Zymil Arancione 500ml", prezzo:"1,55", categoria:"Latticini"},
+{nome:"Latte Granarolo Scremato 1000ml", prezzo:"1,40", categoria:"Latticini"},
+{nome:"Latte Arborea 1000ml", prezzo:"1,30", categoria:"Latticini"},
 
-{
-nome:"Latte Arborea 1000ml",
-prezzo:"€1,30"
-},
+{nome:"Mozzarella Lioi", prezzo:"2,50", categoria:"Latticini"},
+{nome:"Mozzarella Caggiano", prezzo:"3,10", categoria:"Latticini"},
+{nome:"Mozzarella Scavone", prezzo:"2,50", categoria:"Latticini"},
 
-{
-nome:"Mozzarella Lioi",
-prezzo:"€2,50"
-},
+{nome:"Sottilette Classiche", prezzo:"2,30", categoria:"Latticini"},
+{nome:"Kraft Fettine Classiche", prezzo:"2,20", categoria:"Latticini"},
+{nome:"Galbani Galbanino Fette", prezzo:"2,20", categoria:"Latticini"},
+{nome:"Mio Formaggini", prezzo:"2,00", categoria:"Latticini"},
+{nome:"Parmareggio Cremosini", prezzo:"1,95", categoria:"Latticini"},
 
-{
-nome:"Mozzarella Caggiano",
-prezzo:"€3,10"
-},
+{nome:"Philadelphia Original", prezzo:"2,40", categoria:"Latticini"},
+{nome:"Philadelphia Light", prezzo:"3,40", categoria:"Latticini"},
+{nome:"Philadelphia Senza Lattosio", prezzo:"2,95", categoria:"Latticini"},
 
-{
-nome:"Mozzarella Scavone",
-prezzo:"€2,50"
-},
+{nome:"Galbani Nuvola", prezzo:"2,40", categoria:"Latticini"},
+{nome:"Prealpi Quick", prezzo:"1,30", categoria:"Latticini"},
+{nome:"Alpina Latticino Fresco Light", prezzo:"1,40", categoria:"Latticini"},
 
-{
-nome:"Philadelphia Original",
-prezzo:"€2,40"
-},
+{nome:"Asiago DOP", prezzo:"3,90", categoria:"Latticini"},
+{nome:"Gorgonzola Dolcetto", prezzo:"2,80", categoria:"Latticini"},
+{nome:"Gorgonzola Classic", prezzo:"1,85", categoria:"Latticini"},
+{nome:"Grana Padano Fette", prezzo:"2,40", categoria:"Latticini"},
 
-{
-nome:"Stracchino Nonno Nanni",
-prezzo:"€2,00"
-},
+{nome:"Stracchino Nonno Nanni", prezzo:"2,00", categoria:"Latticini"},
+{nome:"Robiola Nonno Nanni", prezzo:"1,90", categoria:"Latticini"},
 
-{
-nome:"Prosciutto Cotto",
-prezzo:"€1,80 etto"
-},
+{nome:"Yogurt Activia", prezzo:"3,50", categoria:"Latticini"},
+{nome:"Yogurt Intero Bianco", prezzo:"1,20", categoria:"Latticini"},
+{nome:"Actimel", prezzo:"4,30", categoria:"Latticini"},
+{nome:"Milk Benessere", prezzo:"2,80", categoria:"Latticini"},
 
-{
-nome:"Prosciutto Crudo",
-prezzo:"€3,50 etto"
-},
+{nome:"Burro Galbani Santa Lucia 250g", prezzo:"3,95", categoria:"Latticini"},
+{nome:"Burro Fattorie Lucane 125g", prezzo:"1,60", categoria:"Latticini"},
 
-{
-nome:"Speck",
-prezzo:"€2,90 etto"
-},
+/* =========================
+   SALUMI
+========================= */
 
-{
-nome:"Mortadella",
-prezzo:"€1,70 etto"
-},
+{nome:"Prosciutto Cotto", prezzo:"1,80 etto", categoria:"Salumi"},
+{nome:"Prosciutto Crudo", prezzo:"3,50 etto", categoria:"Salumi"},
+{nome:"Speck", prezzo:"2,90 etto", categoria:"Salumi"},
+{nome:"Salame Napoli", prezzo:"2,50 etto", categoria:"Salumi"},
+{nome:"Salame Ungherese", prezzo:"2,50 etto", categoria:"Salumi"},
+{nome:"Salame Piccante", prezzo:"2,50 etto", categoria:"Salumi"},
+{nome:"Mortadella", prezzo:"1,70 etto", categoria:"Salumi"},
+{nome:"Prosciutella", prezzo:"1,80 etto", categoria:"Salumi"},
+{nome:"Pancetta Coppata", prezzo:"2,50 etto", categoria:"Salumi"},
 
-{
-nome:"Pasta Divella",
-prezzo:"€0,80"
-},
+/* =========================
+   PASTA E DISPENSA
+========================= */
 
-{
-nome:"Pasta De Cecco",
-prezzo:"€1,30"
-},
+{nome:"Pasta Divella", prezzo:"0,80", categoria:"Dispensa"},
+{nome:"Pasta De Cecco", prezzo:"1,30", categoria:"Dispensa"},
+{nome:"Pasta Rummo", prezzo:"1,10", categoria:"Dispensa"},
 
-{
-nome:"Pasta Rummo",
-prezzo:"€1,10"
-},
+{nome:"Riso Gallo Chicchi di Riso", prezzo:"2,30", categoria:"Dispensa"},
+{nome:"Riso Gallo Blond Insalate", prezzo:"2,90", categoria:"Dispensa"},
+{nome:"Riso Gallo Blond Integrale", prezzo:"3,40", categoria:"Dispensa"},
+{nome:"Riso Divella Carnaroli", prezzo:"2,90", categoria:"Dispensa"},
+{nome:"Riso Divella Ribe", prezzo:"2,80", categoria:"Dispensa"},
+{nome:"Riso Curtiriso", prezzo:"2,90", categoria:"Dispensa"},
 
-{
-nome:"Passata Mutti",
-prezzo:"€1,60"
-},
+{nome:"Passata Mutti", prezzo:"1,60", categoria:"Dispensa"},
+{nome:"Polpa Mutti", prezzo:"1,75", categoria:"Dispensa"},
+{nome:"Pomodori Pelati Divella", prezzo:"0,80", categoria:"Dispensa"},
+{nome:"Pomodori con Buccia Divella", prezzo:"0,85", categoria:"Dispensa"},
 
-{
-nome:"Uova Agriovo",
-prezzo:"€2,20"
-},
+{nome:"Uova Agriovo", prezzo:"2,20", categoria:"Dispensa"},
 
-{
-nome:"Tonno Rio Mare",
-prezzo:"€6,50"
-},
+{nome:"Tonno Rio Mare Olio Oliva 4x80", prezzo:"6,50", categoria:"Dispensa"},
+{nome:"Tonno Nostromo Goccia d'Olio 3x65", prezzo:"2,80", categoria:"Dispensa"},
+{nome:"Tonno Mister Ton 3x80", prezzo:"2,30", categoria:"Dispensa"},
 
-{
-nome:"Nutella 220g",
-prezzo:"€3,90"
-},
+{nome:"Filetti di Tonno Callipo 170g", prezzo:"5,80", categoria:"Dispensa"},
+{nome:"Filetti di Sgombro Rio Mare", prezzo:"2,65", categoria:"Dispensa"},
 
-{
-nome:"Nutella 750g",
-prezzo:"€6,80"
-},
+{nome:"Acciughe Monte Mare 80g", prezzo:"1,90", categoria:"Dispensa"},
+{nome:"Acciughe Monte Mare 160g", prezzo:"3,70", categoria:"Dispensa"},
 
-{
-nome:"Acqua Lilia",
-prezzo:"€2,50"
-},
+{nome:"Insalatissime Rio Mare", prezzo:"2,80", categoria:"Dispensa"},
+{nome:"Simmenthal 3x70", prezzo:"3,95", categoria:"Dispensa"},
+{nome:"Simmenthal 3x90", prezzo:"4,90", categoria:"Dispensa"},
 
-{
-nome:"Acqua Gaudianello",
-prezzo:"€2,80"
-},
+{nome:"Maionese Heinz", prezzo:"2,40", categoria:"Dispensa"},
+{nome:"Maionese Calvé", prezzo:"2,20", categoria:"Dispensa"},
+{nome:"Ketchup Calvé", prezzo:"2,20", categoria:"Dispensa"},
+{nome:"Ketchup Heinz", prezzo:"2,40", categoria:"Dispensa"},
 
-{
-nome:"Coca Cola 1,5L",
-prezzo:"€2,40"
-},
+{nome:"Pesto Genovese Barilla", prezzo:"2,60", categoria:"Dispensa"},
+{nome:"Peperoni in Aceto Ponti", prezzo:"2,80", categoria:"Dispensa"},
+{nome:"Olive Saclà", prezzo:"2,10", categoria:"Dispensa"},
+{nome:"Funghi Champignons Di Carlo", prezzo:"1,30", categoria:"Dispensa"},
 
-{
-nome:"Fanta 1,5L",
-prezzo:"€2,00"
-},
+{nome:"Mais Valfrutta", prezzo:"1,00", categoria:"Dispensa"},
+{nome:"Fagioli Cannellini Valfrutta", prezzo:"1,20", categoria:"Dispensa"},
+{nome:"Fagioli Borlotti Valfrutta", prezzo:"1,20", categoria:"Dispensa"},
+{nome:"Piselli Valfrutta", prezzo:"1,40", categoria:"Dispensa"},
 
-{
-nome:"Estathé Limone",
-prezzo:"€2,30"
-},
+{nome:"Vino Bianco Tavernello", prezzo:"2,15", categoria:"Dispensa"},
+{nome:"Vino Rosso Tavernello", prezzo:"2,15", categoria:"Dispensa"},
 
-{
-nome:"Birra Peroni",
-prezzo:"€1,00"
-},
+{nome:"Aceto di Vino Ponti", prezzo:"1,50", categoria:"Dispensa"},
+{nome:"Aceto di Alcol Casaceto", prezzo:"1,00", categoria:"Dispensa"},
 
-{
-nome:"Detersivo Svelto Limone",
-prezzo:"€2,40"
-},
+{nome:"Biscotti Mulino Bianco", prezzo:"2,20", categoria:"Colazione"},
+{nome:"Biscotti Mulino Bianco Farciti", prezzo:"3,40", categoria:"Colazione"},
+{nome:"Biscotti Divella", prezzo:"1,50", categoria:"Colazione"},
+{nome:"Pan di Stelle", prezzo:"2,80", categoria:"Colazione"},
+{nome:"Gocciole Pavesi", prezzo:"3,30", categoria:"Colazione"},
 
-{
-nome:"Sgrassatore Chanteclair",
-prezzo:"€2,65"
-},
+{nome:"Biscotti Galbusera Senza Zuccheri", prezzo:"3,20", categoria:"Colazione"},
+{nome:"Biscotti Gran Turchese", prezzo:"2,45", categoria:"Colazione"},
+{nome:"Biscotti Oro Saiwa", prezzo:"1,60", categoria:"Colazione"},
 
-{
-nome:"Shampoo Pantene",
-prezzo:"€3,60"
-},
+{nome:"Kinder Brioss", prezzo:"3,50", categoria:"Colazione"},
+{nome:"Kinder Colazione Più", prezzo:"3,45", categoria:"Colazione"},
+{nome:"Kinder Panecioc", prezzo:"3,60", categoria:"Colazione"},
 
-{
-nome:"Bagnoschiuma Vidal",
-prezzo:"€1,85"
-}
+{nome:"Nastrine Mulino Bianco", prezzo:"2,95", categoria:"Colazione"},
+{nome:"Plum Cake Mulino Bianco", prezzo:"2,80", categoria:"Colazione"},
+{nome:"Croissant Bauli Albicocca", prezzo:"2,70", categoria:"Colazione"},
+{nome:"Croissant Bauli Ciliegia", prezzo:"2,70", categoria:"Colazione"},
+{nome:"Croissant Bauli Crema", prezzo:"2,70", categoria:"Colazione"},
+{nome:"Croissant Divella", prezzo:"1,60", categoria:"Colazione"},
+
+{nome:"Balconi", prezzo:"1,80", categoria:"Colazione"},
+{nome:"Marmellata Santa Rosa", prezzo:"2,40", categoria:"Colazione"},
+{nome:"Marmellata Hero Light", prezzo:"2,85", categoria:"Colazione"},
+{nome:"Miele Ambrosoli", prezzo:"3,85", categoria:"Colazione"},
+{nome:"Nutella 220g", prezzo:"3,90", categoria:"Colazione"},
+{nome:"Nutella 750g", prezzo:"6,80", categoria:"Colazione"},
+
+{nome:"Caffè Lavazza Rossa 2x250g", prezzo:"11,90", categoria:"Colazione"},
+{nome:"Caffè Kimbo 250g", prezzo:"5,80", categoria:"Colazione"},
+{nome:"Tè StarTea Classico", prezzo:"1,80", categoria:"Colazione"},
+{nome:"Tè StarTea Verde", prezzo:"2,40", categoria:"Colazione"},
+{nome:"Tè StarTea Limone", prezzo:"2,30", categoria:"Colazione"},
+{nome:"Tisane L'Angelica", prezzo:"2,90", categoria:"Colazione"},
 
 ];
-
-let html="";
-
-prodotti.forEach(p=>{
-
-html+=`
-<div class="prodotto">
-
-<h3>${p.nome}</h3>
-
-<p class="prezzo">${p.prezzo}</p>
-
-<a class="btn-whatsapp"
-href="https://wa.me/393273395302?text=Buongiorno,%20vorrei%20ordinare%20${encodeURIComponent(p.nome)}">
-
-<button class="btn">
-Ordina
-</button>
-
-</a>
-
-</div>
-`;
-
-});
-
-document.getElementById("catalogo").innerHTML=html;
-
-function filtraProdotti(){
-
-let filtro=document
-.getElementById("search")
-.value
-.toLowerCase();
-
-let cards=
-document.querySelectorAll(".prodotto");
-
-cards.forEach(card=>{
-
-card.style.display=
-card.innerText.toLowerCase()
-.includes(filtro)
-? "block"
-: "none";
-
-});
-
-}
