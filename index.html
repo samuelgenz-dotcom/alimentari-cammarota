@@ -55,6 +55,26 @@
   <div id="catalogo"></div>
 </section>
 
+<!-- CARRELLO FISSO IN BASSO -->
+<div id="carrello-bar" style="display:none;">
+  <span id="carrello-info">🛒 0 prodotti</span>
+  <button onclick="apriCarrello()">Vedi carrello</button>
+  <button class="btn-invia" onclick="inviaOrdine()">📱 Invia ordine su WhatsApp</button>
+</div>
+
+<!-- POPUP CARRELLO -->
+<div id="carrello-popup" style="display:none;">
+  <div id="carrello-contenuto">
+    <h2>🛒 Il tuo carrello</h2>
+    <div id="carrello-lista"></div>
+    <div id="carrello-azioni">
+      <button onclick="chiudiCarrello()">✖ Chiudi</button>
+      <button onclick="svuotaCarrello()">🗑 Svuota</button>
+      <button class="btn-invia" onclick="inviaOrdine()">📱 Invia ordine su WhatsApp</button>
+    </div>
+  </div>
+</div>
+
 <footer>
   <h3>📍 Alimentari Cammarota</h3>
   <p>Cancellara (PZ)</p>
@@ -65,20 +85,26 @@
 <script src="prodotti.js"></script>
 <script>
   let categoriaAttiva = "Tutti";
+  let carrello = [];
 
   function mostraProdotti(lista) {
     const catalogo = document.getElementById("catalogo");
     catalogo.innerHTML = "";
 
     lista.forEach(prodotto => {
+      const nelCarrello = carrello.find(p => p.nome === prodotto.nome);
+      const quantita = nelCarrello ? nelCarrello.quantita : 0;
+
       catalogo.innerHTML += `
         <div class="card">
           <h3>${prodotto.nome}</h3>
           <p class="prezzo">${prodotto.prezzo}</p>
           <p>${prodotto.categoria}</p>
-          <a class="ordina"
-             href="https://wa.me/393273395302?text=Buongiorno,%20vorrei%20ordinare:%20${encodeURIComponent(prodotto.nome)}"
-             target="_blank">📱 Ordina</a>
+          <div class="quantita-controlli">
+            <button onclick="rimuoviDalCarrello('${prodotto.nome.replace(/'/g, "\\'")}')">−</button>
+            <span id="qty-${prodotto.nome.replace(/[^a-zA-Z0-9]/g, '_')}">${quantita}</span>
+            <button onclick="aggiungiAlCarrello('${prodotto.nome.replace(/'/g, "\\'")}', '${prodotto.prezzo}', '${prodotto.categoria}')">+</button>
+          </div>
         </div>
       `;
     });
@@ -86,7 +112,89 @@
     document.getElementById("contatore").innerHTML = lista.length + " prodotti trovati";
   }
 
-  function filtraProdotti() {
+  function aggiungiAlCarrello(nome, prezzo, categoria) {
+    const esistente = carrello.find(p => p.nome === nome);
+    if (esistente) {
+      esistente.quantita++;
+    } else {
+      carrello.push({ nome, prezzo, categoria, quantita: 1 });
+    }
+    aggiornaCarrello();
+    mostraProdottiFiltrati();
+  }
+
+  function rimuoviDalCarrello(nome) {
+    const esistente = carrello.find(p => p.nome === nome);
+    if (esistente) {
+      esistente.quantita--;
+      if (esistente.quantita <= 0) {
+        carrello = carrello.filter(p => p.nome !== nome);
+      }
+    }
+    aggiornaCarrello();
+    mostraProdottiFiltrati();
+  }
+
+  function aggiornaCarrello() {
+    const totale = carrello.reduce((acc, p) => acc + p.quantita, 0);
+    const bar = document.getElementById("carrello-bar");
+    const info = document.getElementById("carrello-info");
+
+    if (totale > 0) {
+      bar.style.display = "flex";
+      info.textContent = "🛒 " + totale + (totale === 1 ? " prodotto" : " prodotti");
+    } else {
+      bar.style.display = "none";
+    }
+  }
+
+  function apriCarrello() {
+    const popup = document.getElementById("carrello-popup");
+    const lista = document.getElementById("carrello-lista");
+    lista.innerHTML = "";
+
+    carrello.forEach(p => {
+      lista.innerHTML += `
+        <div class="carrello-riga">
+          <span>${p.nome}</span>
+          <div class="quantita-controlli">
+            <button onclick="rimuoviDalCarrello('${p.nome.replace(/'/g, "\\'")}'); apriCarrello()">−</button>
+            <span>${p.quantita}</span>
+            <button onclick="aggiungiAlCarrello('${p.nome.replace(/'/g, "\\'")}', '${p.prezzo}', '${p.categoria}'); apriCarrello()">+</button>
+          </div>
+          <span class="prezzo-riga">${p.prezzo}</span>
+        </div>
+      `;
+    });
+
+    popup.style.display = "flex";
+  }
+
+  function chiudiCarrello() {
+    document.getElementById("carrello-popup").style.display = "none";
+  }
+
+  function svuotaCarrello() {
+    carrello = [];
+    aggiornaCarrello();
+    chiudiCarrello();
+    mostraProdottiFiltrati();
+  }
+
+  function inviaOrdine() {
+    if (carrello.length === 0) return;
+
+    let messaggio = "Buongiorno, vorrei ordinare:\n\n";
+    carrello.forEach(p => {
+      messaggio += `• ${p.quantita}x ${p.nome} (${p.prezzo})\n`;
+    });
+    messaggio += "\nGrazie!";
+
+    const url = "https://wa.me/393273395302?text=" + encodeURIComponent(messaggio);
+    window.open(url, "_blank");
+  }
+
+  function mostraProdottiFiltrati() {
     const testo = document.getElementById("search").value.toLowerCase();
     const filtrati = prodotti.filter(p => {
       const matchNome = p.nome.toLowerCase().includes(testo);
@@ -96,12 +204,16 @@
     mostraProdotti(filtrati);
   }
 
+  function filtraProdotti() {
+    mostraProdottiFiltrati();
+  }
+
   function filtraCategoria(cat) {
     categoriaAttiva = cat;
     document.querySelectorAll(".filtri button").forEach(b => {
       b.classList.toggle("attivo", b.textContent === cat);
     });
-    filtraProdotti();
+    mostraProdottiFiltrati();
   }
 
   mostraProdotti(prodotti);
