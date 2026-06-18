@@ -13,8 +13,8 @@
   <h1>Alimentari Cammarota</h1>
   <p class="slogan">Qualità • Tradizione • Fiducia</p>
   <div class="banner">🚚 Consegna gratuita a Cancellara</div>
-  <a href="https://wa.me/393273395302" target="_blank">📱 Ordina su WhatsApp</a>
-  <a href="tel:+393273395302">☎️ Chiama Ora</a>
+  <a href="https://wa.me/393273395302" target="_blank" class="btn-whatsapp">📱 Ordina su WhatsApp</a>
+  <a href="tel:+393273395302" class="btn-call">☎️ Chiama Ora</a>
 </header>
 
 <section class="offerte">
@@ -29,25 +29,20 @@
 
 <section class="ricerca">
   <h2>🔎 Cerca un prodotto</h2>
-  <!-- CORRETTO: aggiunto l'input mancante -->
   <input type="text" id="search" placeholder="Cerca prodotto..." oninput="filtraProdotti()">
 </section>
 
 <section class="categorie">
   <h2>📂 Categorie</h2>
   <div class="filtri">
-    <!-- CORRETTO: aggiunti i pulsanti al posto del testo semplice -->
-    <button onclick="filtraCategoria('Tutti')">Tutti</button>
+    <button class="attivo" onclick="filtraCategoria('Tutti')">Tutti</button>
     <button onclick="filtraCategoria('Latticini')">Latticini</button>
     <button onclick="filtraCategoria('Salumi')">Salumi</button>
-    <button onclick="filtraCategoria('Formaggi')">Formaggi</button>
     <button onclick="filtraCategoria('Pasta')">Pasta</button>
     <button onclick="filtraCategoria('Conserve')">Conserve</button>
-    <button onclick="filtraCategoria('Bibite')">Bibite</button>
-    <button onclick="filtraCategoria('Acqua')">Acqua</button>
-    <button onclick="filtraCategoria('Snack')">Snack</button>
     <button onclick="filtraCategoria('Colazione')">Colazione</button>
-    <button onclick="filtraCategoria('Surgelati')">Surgelati</button>
+    <button onclick="filtraCategoria('Acqua')">Acqua</button>
+    <button onclick="filtraCategoria('Bibite')">Bibite</button>
     <button onclick="filtraCategoria('Detersivi')">Detersivi</button>
     <button onclick="filtraCategoria('Igiene')">Igiene</button>
     <button onclick="filtraCategoria('Casa')">Casa</button>
@@ -67,7 +62,6 @@
   <p>🕐 08:30 - 14:00 | 17:00 - 21:00</p>
 </footer>
 
-<!-- CORRETTO: un solo blocco script, prodotti.js caricato prima -->
 <script src="prodotti.js"></script>
 <script>
   let categoriaAttiva = "Tutti";
@@ -104,6 +98,9 @@
 
   function filtraCategoria(cat) {
     categoriaAttiva = cat;
+    document.querySelectorAll(".filtri button").forEach(b => {
+      b.classList.toggle("attivo", b.textContent === cat);
+    });
     filtraProdotti();
   }
 
