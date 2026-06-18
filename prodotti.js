@@ -150,5 +150,183 @@ const prodotti = [
 {nome:"Tè StarTea Verde", prezzo:"2,40", categoria:"Colazione"},
 {nome:"Tè StarTea Limone", prezzo:"2,30", categoria:"Colazione"},
 {nome:"Tisane L'Angelica", prezzo:"2,90", categoria:"Colazione"},
+   // PASTA
+{
+  nome: "Pasta Divella Spaghetti",
+  prezzo: "€0,80",
+  categoria: "Pasta"
+},
+{
+  nome: "Pasta Divella Penne",
+  prezzo: "€0,80",
+  categoria: "Pasta"
+},
+{
+  nome: "Pasta Divella Fusilli",
+  prezzo: "€0,80",
+  categoria: "Pasta"
+},
+{
+  nome: "Gnocchi",
+  prezzo: "€1,50",
+  categoria: "Pasta"
+},
 
-];
+// CONSERVE E SUGHI
+{
+  nome: "Passata Mutti",
+  prezzo: "€1,50",
+  categoria: "Conserve"
+},
+{
+  nome: "Polpa Mutti",
+  prezzo: "€1,20",
+  categoria: "Conserve"
+},
+{
+  nome: "Tonno Rio Mare",
+  prezzo: "€3,50",
+  categoria: "Conserve"
+},
+{
+  nome: "Mais Bonduelle",
+  prezzo: "€1,20",
+  categoria: "Conserve"
+},
+
+// FORMAGGI
+{
+  nome: "Parmigiano Reggiano",
+  prezzo: "€2,80",
+  categoria: "Formaggi"
+},
+{
+  nome: "Grana Padano",
+  prezzo: "€2,50",
+  categoria: "Formaggi"
+},
+{
+  nome: "Galbanino",
+  prezzo: "€2,40",
+  categoria: "Formaggi"
+},
+{
+  nome: "Sottilette",
+  prezzo: "€2,20",
+  categoria: "Formaggi"
+},
+
+// SALUMI
+{
+  nome: "Prosciutto Cotto",
+  prezzo: "€1,80 etto",
+  categoria: "Salumi"
+},
+{
+  nome: "Prosciutto Crudo",
+  prezzo: "€3,50 etto",
+  categoria: "Salumi"
+},
+{
+  nome: "Mortadella",
+  prezzo: "€1,70 etto",
+  categoria: "Salumi"
+},
+{
+  nome: "Speck",
+  prezzo: "€2,90 etto",
+  categoria: "Salumi"
+},
+{
+  nome: "Salame Napoli",
+  prezzo: "€2,50 etto",
+  categoria: "Salumi"
+},
+
+// BIBITE
+{
+  nome: "Coca Cola 1,5L",
+  prezzo: "€2,40",
+  categoria: "Bibite"
+},
+{
+  nome: "Fanta 1,5L",
+  prezzo: "€2,30",
+  categoria: "Bibite"
+},
+{
+  nome: "Sprite 1,5L",
+  prezzo: "€2,30",
+  categoria: "Bibite"
+},
+{
+  nome: "Estathe Limone",
+  prezzo: "€1,50",
+  categoria: "Bibite"
+},
+{
+  nome: "Estathe Pesca",
+  prezzo: "€1,50",
+  categoria: "Bibite"
+},
+
+// ACQUA
+{
+  nome: "Acqua Ferrarelle 1,5L",
+  prezzo: "€0,50",
+  categoria: "Acqua"
+},
+{
+  nome: "Acqua Lete 1,5L",
+  prezzo: "€0,50",
+  categoria: "Acqua"
+},
+{
+  nome: "Acqua Santagata 1,5L",
+  prezzo: "€0,45",
+  categoria: "Acqua"
+},
+
+// SNACK
+{
+  nome: "Patatine San Carlo",
+  prezzo: "€1,80",
+  categoria: "Snack"
+},
+{
+  nome: "Taralli",
+  prezzo: "€1,50",
+  categoria: "Snack"
+},
+{
+  nome: "Crackers Saiwa",
+  prezzo: "€1,70",
+  categoria: "Snack"
+},
+{
+  nome: "Kinder Bueno",
+  prezzo: "€1,30",
+  categoria: "Snack"
+},
+
+// COLAZIONE
+{
+  nome: "Biscotti Mulino Bianco",
+  prezzo: "€2,50",
+  categoria: "Colazione"
+},
+{
+  nome: "Nutella 450g",
+  prezzo: "€4,90",
+  categoria: "Colazione"
+},
+{
+  nome: "Cornetti Bauli",
+  prezzo: "€2,20",
+  categoria: "Colazione"
+},
+{
+  nome: "Fette Biscottate",
+  prezzo: "€1,80",
+  categoria: "Colazione"
+}
