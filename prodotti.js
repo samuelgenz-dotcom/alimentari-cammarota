@@ -418,32 +418,5 @@ const prodotti = [
   nome: "Pellicola Alimentare",
   prezzo: "€1,80",
   categoria: "Casa"
-},
-
-// FRUTTA E VERDURA
-{
-  nome: "Banane",
-  prezzo: "€1,80 kg",
-  categoria: "Frutta e Verdura"
-},
-{
-  nome: "Mele Golden",
-  prezzo: "€2,00 kg",
-  categoria: "Frutta e Verdura"
-},
-{
-  nome: "Pomodori",
-  prezzo: "€2,20 kg",
-  categoria: "Frutta e Verdura"
-},
-{
-  nome: "Insalata",
-  prezzo: "€1,20",
-  categoria: "Frutta e Verdura"
-},
-{
-  nome: "Patate",
-  prezzo: "€1,50 kg",
-  categoria: "Frutta e Verdura"
 }
 
