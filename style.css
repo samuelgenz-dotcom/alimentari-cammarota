@@ -144,3 +144,13 @@ margin-top:30px;
   padding:15px;
   border-radius:12px;
 }
+
+.btn-call{
+  display:inline-block;
+  background:#1565c0;
+  color:white;
+  padding:15px 25px;
+  border-radius:12px;
+  text-decoration:none;
+  margin-top:10px;
+}
