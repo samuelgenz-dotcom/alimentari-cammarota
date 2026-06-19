@@ -67,6 +67,8 @@
     <h2>🛒 Il tuo carrello</h2>
     <div id="carrello-lista"></div>
 
+    <div id="suggerimenti-box" style="display:none;"></div>
+
     <div id="carrello-totale">
       Totale prodotti: <span id="totale-valore">€0,00</span>
     </div>
@@ -109,6 +111,15 @@
   let carrello = [];
 
   const prodottiInOfferta = ["Latte Parmalat Intero ml 1000", "Mozzarella Lioi", "Pasta Divella", "Coca Cola Lt 1,5"];
+
+  const abbinamenti = {
+    "Pasta": ["Passata Mutti", "Pesto Genovese Barilla", "Grana Padano Fette"],
+    "Latticini": ["Biscotti Mulino Bianco", "Nutella gr.220", "Caffè Kimbo 250g"],
+    "Salumi": ["Pasta Divella", "Mozzarella Lioi"],
+    "Colazione": ["Caffè Kimbo 250g", "Latte Parmalat Intero ml 1000"],
+    "Bibite": ["Patatine San Carlo", "Taralli"],
+    "Conserve": ["Pasta Divella", "Pasta De Cecco"]
+  };
 
   const SOGLIA_GRATIS = 15;
   const COSTO_CONSEGNA = 2;
@@ -215,7 +226,141 @@
     document.getElementById("totale-finale-valore").textContent = formattaPrezzo(totaleFinale);
   }
 
+  function getSuggerimenti() {
+    const categorieNelCarrello = [...new Set(carrello.map(p => p.categoria))];
+    const nomiNelCarrello = carrello.map(p => p.nome);
+    let suggeriti = [];
+
+    categorieNelCarrello.forEach(cat => {
+      if (abbinamenti[cat]) {
+        abbinamenti[cat].forEach(nomeSuggerito => {
+          if (!nomiNelCarrello.includes(nomeSuggerito) && !suggeriti.includes(nomeSuggerito)) {
+            suggeriti.push(nomeSuggerito);
+          }
+        });
+      }
+    });
+
+    return suggeriti.slice(0, 3)
+      .map(nome => prodotti.find(p => p.nome === nome))
+      .filter(p => p !== undefined);
+  }
+
   function apriCarrello() {
     const popup = document.getElementById("carrello-popup");
     const lista = document.getElementById("carrello-lista");
     lista.innerHTML = "";
+
+    carrello.forEach(p => {
+      lista.innerHTML += `
+        <div class="carrello-riga">
+          <span>${p.nome}</span>
+          <div class="quantita-controlli">
+            <button onclick="rimuoviDalCarrello('${p.nome.replace(/'/g, "\\'")}'); apriCarrello()">−</button>
+            <span>${p.quantita}</span>
+            <button onclick="aggiungiAlCarrello('${p.nome.replace(/'/g, "\\'")}', '${p.prezzo}', '${p.categoria}'); apriCarrello()">+</button>
+          </div>
+          <span class="prezzo-riga">${p.prezzo}</span>
+        </div>
+      `;
+    });
+
+    // Box suggerimenti
+    const suggerimenti = getSuggerimenti();
+    const boxSuggerimenti = document.getElementById("suggerimenti-box");
+
+    if (suggerimenti.length > 0) {
+      boxSuggerimenti.style.display = "block";
+      boxSuggerimenti.innerHTML = `
+        <h3>💡 Potrebbero interessarti anche</h3>
+        <div class="suggerimenti-lista">
+          ${suggerimenti.map(p => `
+            <div class="suggerimento-card">
+              <span class="suggerimento-nome">${p.nome}</span>
+              <span class="suggerimento-prezzo">${p.prezzo}</span>
+              <button onclick="aggiungiAlCarrello('${p.nome.replace(/'/g, "\\'")}', '${p.prezzo}', '${p.categoria}'); apriCarrello()">+ Aggiungi</button>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    } else {
+      boxSuggerimenti.style.display = "none";
+    }
+
+    aggiornaTotale();
+    popup.style.display = "flex";
+  }
+
+  function chiudiCarrello() {
+    document.getElementById("carrello-popup").style.display = "none";
+  }
+
+  function svuotaCarrello() {
+    carrello = [];
+    aggiornaCarrello();
+    chiudiCarrello();
+    mostraProdottiFiltrati();
+  }
+
+  function inviaOrdine() {
+    if (carrello.length === 0) return;
+
+    const consegna = document.querySelector('input[name="consegna"]:checked').value;
+    const totaleProdotti = calcolaTotaleProdotti();
+    let costoConsegna = 0;
+
+    if (consegna === "domicilio") {
+      costoConsegna = totaleProdotti >= SOGLIA_GRATIS ? 0 : COSTO_CONSEGNA;
+    }
+
+    const totaleFinale = totaleProdotti + costoConsegna;
+
+    let messaggio = "Buongiorno, vorrei ordinare:\n\n";
+    carrello.forEach(p => {
+      messaggio += `• ${p.quantita}x ${p.nome} (${p.prezzo})\n`;
+    });
+
+    messaggio += "\nTotale prodotti: " + formattaPrezzo(totaleProdotti) + "\n";
+
+    if (consegna === "domicilio") {
+      messaggio += "Consegna a domicilio: " + (costoConsegna === 0 ? "Gratuita" : formattaPrezzo(costoConsegna)) + "\n";
+      messaggio += "Totale ordine: " + formattaPrezzo(totaleFinale) + "\n";
+      messaggio += "\n📍 Modalità: Consegna a domicilio (indicare indirizzo)";
+    } else {
+      messaggio += "Totale ordine: " + formattaPrezzo(totaleFinale) + "\n";
+      messaggio += "\n🏪 Modalità: Ritiro in negozio";
+    }
+
+    messaggio += "\n\nGrazie!";
+
+    const url = "https://wa.me/393273395302?text=" + encodeURIComponent(messaggio);
+    window.open(url, "_blank");
+  }
+
+  function mostraProdottiFiltrati() {
+    const testo = document.getElementById("search").value.toLowerCase();
+    const filtrati = prodotti.filter(p => {
+      const matchNome = p.nome.toLowerCase().includes(testo);
+      const matchCategoria = categoriaAttiva === "Tutti" || p.categoria === categoriaAttiva;
+      return matchNome && matchCategoria;
+    });
+    mostraProdotti(filtrati);
+  }
+
+  function filtraProdotti() {
+    mostraProdottiFiltrati();
+  }
+
+  function filtraCategoria(cat) {
+    categoriaAttiva = cat;
+    document.querySelectorAll(".filtri button").forEach(b => {
+      b.classList.toggle("attivo", b.textContent === cat);
+    });
+    mostraProdottiFiltrati();
+  }
+
+  mostraProdotti(prodotti);
+</script>
+
+</body>
+</html>
