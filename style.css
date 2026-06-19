@@ -315,6 +315,60 @@ h1 {
   white-space: nowrap;
 }
 
+/* SUGGERIMENTI */
+#suggerimenti-box {
+  margin-top: 15px;
+  padding: 15px;
+  background: #fff8e1;
+  border-radius: 12px;
+}
+
+#suggerimenti-box h3 {
+  font-size: 14px;
+  color: #b8860b;
+  margin-bottom: 10px;
+}
+
+.suggerimenti-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.suggerimento-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 10px 12px;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.suggerimento-nome {
+  flex: 1;
+  font-size: 13px;
+}
+
+.suggerimento-prezzo {
+  font-weight: bold;
+  color: #d32f2f;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.suggerimento-card button {
+  background: #0f5d32;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
 /* TOTALE PRODOTTI */
 #carrello-totale {
   margin-top: 15px;
@@ -490,6 +544,15 @@ footer {
   .badge-offerta {
     font-size: 10px;
     padding: 4px 8px;
+  }
+
+  .suggerimento-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .suggerimento-card button {
+    width: 100%;
   }
 
 }
