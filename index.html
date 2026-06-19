@@ -12,7 +12,7 @@
   <img src="logo.png" alt="Alimentari Cammarota" class="logo">
   <h1>Alimentari Cammarota</h1>
   <p class="slogan">Qualità • Tradizione • Fiducia</p>
-  <div class="banner">🚚 Consegna gratuita a Cancellara</div>
+  <div class="banner">🚚 Consegna gratuita a Cancellara sopra i 15€</div>
   <a href="https://wa.me/393273395302" target="_blank" class="btn-whatsapp">📱 Ordina su WhatsApp</a>
   <a href="tel:+393273395302" class="btn-call">☎️ Chiama Ora</a>
 </header>
@@ -21,7 +21,7 @@
   <h2>⭐ Offerte della settimana</h2>
   <div class="offerte-grid">
     <div class="offerta"><h3>Latte Parmalat Intero</h3><p>€1,60</p></div>
-    <div class="offerta"><h3>Uova Agriovo</h3><p>€1,90</p></div>
+    <div class="offerta"><h3>Mozzarella Lioi</h3><p>€2,50</p></div>
     <div class="offerta"><h3>Pasta Divella</h3><p>€0,80</p></div>
     <div class="offerta"><h3>Coca Cola 1,5L</h3><p>€2,40</p></div>
   </div>
@@ -57,9 +57,8 @@
 
 <!-- CARRELLO FISSO IN BASSO -->
 <div id="carrello-bar" style="display:none;">
-  <span id="carrello-info">🛒 0 prodotti</span>
+  <span id="carrello-info">🛒 0 prodotti — €0,00</span>
   <button onclick="apriCarrello()">Vedi carrello</button>
-  <button class="btn-invia" onclick="inviaOrdine()">📱 Invia ordine su WhatsApp</button>
 </div>
 
 <!-- POPUP CARRELLO -->
@@ -67,6 +66,28 @@
   <div id="carrello-contenuto">
     <h2>🛒 Il tuo carrello</h2>
     <div id="carrello-lista"></div>
+
+    <div id="carrello-totale">
+      Totale prodotti: <span id="totale-valore">€0,00</span>
+    </div>
+
+    <div class="consegna-box">
+      <h3>Come vuoi ricevere la spesa?</h3>
+      <label class="consegna-opzione">
+        <input type="radio" name="consegna" value="ritiro" checked onchange="aggiornaTotale()">
+        Ritiro in negozio (gratis)
+      </label>
+      <label class="consegna-opzione">
+        <input type="radio" name="consegna" value="domicilio" onchange="aggiornaTotale()">
+        Consegna a domicilio
+      </label>
+      <p id="nota-consegna"></p>
+    </div>
+
+    <div id="totale-finale">
+      Totale ordine: <span id="totale-finale-valore">€0,00</span>
+    </div>
+
     <div id="carrello-azioni">
       <button onclick="chiudiCarrello()">✖ Chiudi</button>
       <button onclick="svuotaCarrello()">🗑 Svuota</button>
@@ -86,6 +107,23 @@
 <script>
   let categoriaAttiva = "Tutti";
   let carrello = [];
+
+  const SOGLIA_GRATIS = 15;
+  const COSTO_CONSEGNA = 2;
+
+  // Converte "€1,80" o "€1,80 / 100g" in numero 1.80
+  function prezzoANumero(prezzoStr) {
+    const match = prezzoStr.replace(",", ".").match(/[\d.]+/);
+    return match ? parseFloat(match[0]) : 0;
+  }
+
+  function formattaPrezzo(numero) {
+    return "€" + numero.toFixed(2).replace(".", ",");
+  }
+
+  function calcolaTotaleProdotti() {
+    return carrello.reduce((acc, p) => acc + (prezzoANumero(p.prezzo) * p.quantita), 0);
+  }
 
   function mostraProdotti(lista) {
     const catalogo = document.getElementById("catalogo");
@@ -136,16 +174,41 @@
   }
 
   function aggiornaCarrello() {
-    const totale = carrello.reduce((acc, p) => acc + p.quantita, 0);
+    const totaleProdotti = carrello.reduce((acc, p) => acc + p.quantita, 0);
     const bar = document.getElementById("carrello-bar");
     const info = document.getElementById("carrello-info");
+    const totaleEuro = calcolaTotaleProdotti();
 
-    if (totale > 0) {
+    if (totaleProdotti > 0) {
       bar.style.display = "flex";
-      info.textContent = "🛒 " + totale + (totale === 1 ? " prodotto" : " prodotti");
+      info.textContent = "🛒 " + totaleProdotti + (totaleProdotti === 1 ? " prodotto — " : " prodotti — ") + formattaPrezzo(totaleEuro);
     } else {
       bar.style.display = "none";
     }
+  }
+
+  function aggiornaTotale() {
+    const totaleProdotti = calcolaTotaleProdotti();
+    document.getElementById("totale-valore").textContent = formattaPrezzo(totaleProdotti);
+
+    const consegna = document.querySelector('input[name="consegna"]:checked').value;
+    const notaConsegna = document.getElementById("nota-consegna");
+    let costoConsegna = 0;
+
+    if (consegna === "domicilio") {
+      if (totaleProdotti >= SOGLIA_GRATIS) {
+        costoConsegna = 0;
+        notaConsegna.textContent = "✅ Consegna gratuita (ordine superiore a €15,00)";
+      } else {
+        costoConsegna = COSTO_CONSEGNA;
+        notaConsegna.textContent = `🚚 Costo consegna: €2,00 (gratis sopra i €15,00 — mancano ${formattaPrezzo(SOGLIA_GRATIS - totaleProdotti)})`;
+      }
+    } else {
+      notaConsegna.textContent = "";
+    }
+
+    const totaleFinale = totaleProdotti + costoConsegna;
+    document.getElementById("totale-finale-valore").textContent = formattaPrezzo(totaleFinale);
   }
 
   function apriCarrello() {
@@ -167,6 +230,7 @@
       `;
     });
 
+    aggiornaTotale();
     popup.style.display = "flex";
   }
 
@@ -184,11 +248,33 @@
   function inviaOrdine() {
     if (carrello.length === 0) return;
 
+    const consegna = document.querySelector('input[name="consegna"]:checked').value;
+    const totaleProdotti = calcolaTotaleProdotti();
+    let costoConsegna = 0;
+
+    if (consegna === "domicilio") {
+      costoConsegna = totaleProdotti >= SOGLIA_GRATIS ? 0 : COSTO_CONSEGNA;
+    }
+
+    const totaleFinale = totaleProdotti + costoConsegna;
+
     let messaggio = "Buongiorno, vorrei ordinare:\n\n";
     carrello.forEach(p => {
       messaggio += `• ${p.quantita}x ${p.nome} (${p.prezzo})\n`;
     });
-    messaggio += "\nGrazie!";
+
+    messaggio += "\nTotale prodotti: " + formattaPrezzo(totaleProdotti) + "\n";
+
+    if (consegna === "domicilio") {
+      messaggio += "Consegna a domicilio: " + (costoConsegna === 0 ? "Gratuita" : formattaPrezzo(costoConsegna)) + "\n";
+      messaggio += "Totale ordine: " + formattaPrezzo(totaleFinale) + "\n";
+      messaggio += "\n📍 Modalità: Consegna a domicilio (indicare indirizzo)";
+    } else {
+      messaggio += "Totale ordine: " + formattaPrezzo(totaleFinale) + "\n";
+      messaggio += "\n🏪 Modalità: Ritiro in negozio";
+    }
+
+    messaggio += "\n\nGrazie!";
 
     const url = "https://wa.me/393273395302?text=" + encodeURIComponent(messaggio);
     window.open(url, "_blank");
