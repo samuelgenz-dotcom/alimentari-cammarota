@@ -18,7 +18,7 @@
 </header>
 
 <section class="offerte">
-  <h2>⭐ Offerte della settimana ⭐</h2>
+  <h2>⭐ Offerte della settimana</h2>
   <div class="offerte-grid">
     <div class="offerta"><h3>Latte Parmalat Intero</h3><p>€1,60</p></div>
     <div class="offerta"><h3>Mozzarella Lioi</h3><p>€2,50</p></div>
@@ -108,6 +108,8 @@
   let categoriaAttiva = "Tutti";
   let carrello = [];
 
+  const prodottiInOfferta = ["Latte Parmalat Intero ml 1000", "Mozzarella Lioi", "Pasta Divella", "Coca Cola Lt 1,5"];
+
   const SOGLIA_GRATIS = 15;
   const COSTO_CONSEGNA = 2;
 
@@ -132,9 +134,11 @@
     lista.forEach(prodotto => {
       const nelCarrello = carrello.find(p => p.nome === prodotto.nome);
       const quantita = nelCarrello ? nelCarrello.quantita : 0;
+      const inOfferta = prodottiInOfferta.includes(prodotto.nome);
 
       catalogo.innerHTML += `
         <div class="card">
+          ${inOfferta ? '<span class="badge-offerta">⭐ OFFERTA</span>' : ''}
           <h3>${prodotto.nome}</h3>
           <p class="prezzo">${prodotto.prezzo}</p>
           <p>${prodotto.categoria}</p>
